@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'books',
-    loadChildren: './book/book.module#BookModule'
+    loadChildren: () => import('./book/book.module').then(m => m.BookModule)
   }
 ];
 
