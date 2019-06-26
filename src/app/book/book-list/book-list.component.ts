@@ -35,12 +35,11 @@ export class BookListComponent implements OnInit {
     this.books$ = this.store.select(state => getBooks(state));
     this.books$.subscribe(b => {
       this.books = b;
-      // this.cdr.detectChanges();
     });
     setInterval(() => {
       this.i++;
       this.books[0].title = 'Design Patterns ' + this.i;
-      this.bookSub.next(this.books);
+      this.cdr.detectChanges();
     }, 1500);
   }
 }

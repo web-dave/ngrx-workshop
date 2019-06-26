@@ -19,16 +19,20 @@ import { Book } from '../shared/book';
 export class BookPreviewComponent
   implements OnInit, OnChanges, AfterViewChecked, AfterContentChecked {
   @Input() book: Book;
+  oldbook: Book;
   constructor(private cdr: ChangeDetectorRef) {}
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
     console.log(this.book.title, 'ngOnChanges', changes);
+    this.oldbook = { ...this.book };
   }
-  ngAfterViewChecked(): void {
-    console.log(this.book.title, 'ngAfterViewChecked');
-  }
+  ngAfterViewChecked(): void {}
   ngAfterContentChecked(): void {
-    console.log(this.book.title, 'ngAfterContentChecked');
-    this.cdr.detectChanges();
+    if (JSON.stringify(this.oldbook) !== JSON.stringify(this.book)) {
+      console.log(this.book.title, 'ngAfterContentChecked');
+      this.oldbook = { ...this.book };
+      this.cdr.detectChanges();
+    }
+    // console.log(Object.is(this.oldbook, this.book));
   }
 
   ngOnInit() {}
