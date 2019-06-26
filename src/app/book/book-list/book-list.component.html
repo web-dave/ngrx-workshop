@@ -7,10 +7,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="book-row" *ngFor="let book of books$ | async">
+    <eis-book-preview
+      *ngFor="let book of books"
+      [book]="book"
+    ></eis-book-preview>
+    <!-- <tr class="book-row" *ngFor="let book of books$ | async">
       <td><a [routerLink]="[book.isbn]">{{book.title}}</a></td>
       <td>{{book.isbn}}</td>
       <td>{{book.author}}</td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>

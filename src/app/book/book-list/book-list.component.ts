@@ -13,6 +13,7 @@ import { getBooks } from '../store/books.selectors';
 })
 export class BookListComponent implements OnInit {
   books$: Observable<Book[]>;
+  books: Book[];
 
   // constructor(private bookData: BookDataService) {}
   constructor(private store: Store<BooksState>) {}
@@ -20,5 +21,6 @@ export class BookListComponent implements OnInit {
   ngOnInit() {
     // this.books$ = this.bookData.getBooks();
     this.books$ = this.store.select(state => getBooks(state));
+    this.books$.subscribe(b => (this.books = b));
   }
 }

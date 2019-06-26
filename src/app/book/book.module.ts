@@ -12,6 +12,7 @@ import { booksStoreName } from './store/books.store';
 import { booksReducer } from './store/books.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './store/books.effects';
+import { BookPreviewComponent } from './book-preview/book-preview.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { BookEffects } from './store/books.effects';
     BookListComponent,
     BookDetailComponent,
     BookEditComponent,
-    BookNewComponent
+    BookNewComponent,
+    BookPreviewComponent
   ]
 })
 export class BookModule {}
