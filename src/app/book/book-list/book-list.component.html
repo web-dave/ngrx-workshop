@@ -8,13 +8,8 @@
   </thead>
   <tbody>
     <eis-book-preview
-      *ngFor="let book of books"
+      *ngFor="let book of bookSub | async"
       [book]="book"
     ></eis-book-preview>
-    <!-- <tr class="book-row" *ngFor="let book of books$ | async">
-      <td><a [routerLink]="[book.isbn]">{{book.title}}</a></td>
-      <td>{{book.isbn}}</td>
-      <td>{{book.author}}</td>
-    </tr> -->
   </tbody>
 </table>
