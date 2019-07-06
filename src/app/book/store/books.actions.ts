@@ -6,7 +6,7 @@ export const WAIT_FOR_BOOKS = '[books] wait for books';
 
 export class LoadBooks implements Action {
   readonly type: string = LOAD_BOOKS;
-  constructor(private books: Book[]) {}
+  constructor(public books: Book[]) {}
 }
 
 export class WaitForBooks implements Action {
