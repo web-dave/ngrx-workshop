@@ -3,5 +3,10 @@ import { booksStoreName, BooksState } from './books.store';
 
 export const getBooks = createSelector(
   createFeatureSelector(booksStoreName),
-  (state: BooksState) => state.books
+  list =>
+    // tslint:disable:no-string-literal
+    Object.keys(list['entities']).map(isbn => {
+      // console.log('-->', list.ids);
+      return list['entities'][isbn];
+    })
 );
