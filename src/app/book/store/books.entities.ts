@@ -1,6 +1,5 @@
 import { createEntityAdapter } from '@ngrx/entity';
 import { Book } from '../shared/book';
-import { BooksState } from './books.store';
 export interface BookEntity {
   [isbn: string]: Book;
 }

@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 import { Book } from '../shared/book';
 import { EntityState } from '@ngrx/entity';
 import { bookAdapter } from './books.entities';

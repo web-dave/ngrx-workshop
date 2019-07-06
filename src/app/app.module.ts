@@ -19,10 +19,11 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 100,
-      logOnly: environment.production
-    })
+    environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 100
+        })
+      : []
   ],
   providers: [],
   bootstrap: [AppComponent]
