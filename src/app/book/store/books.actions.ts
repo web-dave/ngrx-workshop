@@ -11,7 +11,6 @@ export class LoadBooks implements Action {
 
 export class WaitForBooks implements Action {
   readonly type: string = WAIT_FOR_BOOKS;
-  constructor() {}
 }
 
 export type BookActions = LoadBooks | WaitForBooks;
