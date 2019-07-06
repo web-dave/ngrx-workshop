@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
-import { BookDataService } from '../shared/book-data.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { booksStoreName, BooksState } from '../store/books.store';
+import { BooksState } from '../store/books.store';
 import { getBooks } from '../store/books.selectors';
 
 @Component({
