@@ -9,10 +9,7 @@ export class BookEffects {
   @Effect({ dispatch: false })
   loadBooks = this.actions.pipe(
     ofType(WAIT_FOR_BOOKS),
-    tap(() => {
-      console.log('loadBooks', 'Effect');
-      this.service.loadBooks();
-    })
+    tap(() => this.service.loadBooks())
   );
   constructor(private actions: Actions, private service: BookDataService) {}
 }
