@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BooksState } from './store/books.store';
+import { Store } from '@ngrx/store';
+import { WaitForBooks } from './store/books.actions';
 
 @Component({
   selector: 'book',
@@ -6,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private store: Store<BooksState>) {
+    this.store.dispatch(new WaitForBooks());
   }
 
+  ngOnInit() {}
 }

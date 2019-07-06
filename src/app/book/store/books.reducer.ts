@@ -8,6 +8,7 @@ export function booksReducer(
   state = initialState,
   action: BookActions
 ): BooksState {
+  console.log(action.type);
   switch (action.type) {
     case LOAD_BOOKS:
       return {
