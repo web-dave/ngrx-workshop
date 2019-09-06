@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IBook } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { booksStoreName, BooksState } from '../store/books.store';
+import { getBooks } from '../store/books.selectors';
+import { WaitForBooks } from '../store/books.actions';
 
 @Component({
   selector: 'book-list',
@@ -11,9 +15,13 @@ import { Observable } from 'rxjs';
 export class BookListComponent implements OnInit {
   books$: Observable<IBook[]>;
 
-  constructor(private bookData: BookDataService) {}
+  constructor(
+    private bookData: BookDataService,
+    private store: Store<BooksState>
+  ) {}
 
   ngOnInit() {
-    this.books$ = this.bookData.getBooks();
+    this.store.dispatch(new WaitForBooks());
+    this.books$ = this.store.select(getBooks);
   }
 }
