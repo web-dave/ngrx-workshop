@@ -7,9 +7,18 @@ import { BookRoutingModule } from './book-routing.module';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookNewComponent } from './book-new/book-new.component';
+import { StoreModule } from '@ngrx/store';
+import { booksStoreName } from './store/books.store';
+import { booksReducer } from './store/books.reducer';
 
 @NgModule({
-  imports: [BookRoutingModule, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [
+    BookRoutingModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature(booksStoreName, booksReducer)
+  ],
   declarations: [
     BookComponent,
     BookListComponent,

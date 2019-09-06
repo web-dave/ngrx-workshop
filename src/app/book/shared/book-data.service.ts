@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from './book';
+import { IBook } from './book';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,19 +7,20 @@ import { Observable } from 'rxjs';
 export class BookDataService {
   constructor(private http: HttpClient) {}
 
-  getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:4730/books');
+  getBooks(): Observable<IBook[]> {
+    return this.http.get<IBook[]>('http://localhost:4730/books');
+  }
+  getBookByIsbn(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>(`http://localhost:4730/books/${isbn}`);
+  }
+  createBook(book: IBook): Observable<IBook> {
+    return this.http.post<IBook>('http://localhost:4730/books', book);
   }
 
-  getBookByIsbn(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`http://localhost:4730/books/${isbn}`);
-  }
-
-  createBook(book: Book): Observable<Book> {
-    return this.http.post<Book>('http://localhost:4730/books', book);
-  }
-
-  updateBook(isbn: string, vector: any): Observable<Book> {
-    return this.http.patch<Book>(`http://localhost:4730/books/${isbn}`, vector);
+  updateBook(isbn: string, vector: any): Observable<IBook> {
+    return this.http.patch<IBook>(
+      `http://localhost:4730/books/${isbn}`,
+      vector
+    );
   }
 }

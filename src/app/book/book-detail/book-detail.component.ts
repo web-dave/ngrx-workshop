@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../shared/book';
+import { IBook } from '../shared/book';
 import { ActivatedRoute } from '@angular/router';
 import { BookDataService } from '../shared/book-data.service';
 
@@ -9,7 +9,7 @@ import { BookDataService } from '../shared/book-data.service';
   styleUrls: ['book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
-  public book: Book;
+  public book: IBook;
 
   constructor(
     private route: ActivatedRoute,

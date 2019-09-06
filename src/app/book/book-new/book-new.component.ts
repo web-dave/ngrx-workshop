@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Book } from '../shared/book';
+import { IBook } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class BookNewComponent implements OnInit {
 
   onSubmit() {
 
-    const book: Book = {
+    const book: IBook = {
       id: this.form.value.isbn,
       isbn: this.form.value.isbn,
       title: this.form.value.title,
@@ -40,6 +40,6 @@ export class BookNewComponent implements OnInit {
     };
 
     this.bookService.createBook(book)
-      .subscribe((book: Book) => console.log('Added new book', book));
+      .subscribe((book: IBook) => console.log('Added new book', book));
   }
 }
