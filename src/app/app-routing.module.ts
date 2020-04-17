@@ -5,16 +5,23 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/books'
+    redirectTo: '/books',
   },
   {
     path: 'books',
-    loadChildren: () => import('./book/book.module').then(m => m.BookModule)
-  }
+    loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
+  },
+  {
+    path: 'mitarbeiter',
+    loadChildren: () =>
+      import('./mitarbeiter/mitarbeiter.module').then(
+        (m) => m.MitarbeiterModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
