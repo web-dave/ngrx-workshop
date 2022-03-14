@@ -1,7 +1,7 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { BookStaticAsyncDataService } from './../shared/book-static-async-data.service';
 import { BookDataService } from '../shared/book-data.service';
-import { ComponentFixture, TestBed, async, inject} from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
 
 import { BookNewComponent } from './book-new.component';
 import { DebugElement } from '@angular/core';
@@ -28,7 +28,7 @@ describe('BookNewComponent', () => {
       .compileComponents();
   });
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     fixture = TestBed.createComponent(BookNewComponent);
     component = fixture.componentInstance;
     component.ngOnInit();
