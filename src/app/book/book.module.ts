@@ -10,6 +10,8 @@ import { BookNewComponent } from './book-new/book-new.component';
 import { StoreModule } from '@ngrx/store';
 import { booksReducer } from './store/books.reducer';
 import { booksStoreName } from './store/books.store';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './store/books.effects';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { booksStoreName } from './store/books.store';
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature(booksStoreName, booksReducer),
+    EffectsModule.forFeature([BookEffects]),
   ],
   declarations: [
     BookComponent,
