@@ -13,6 +13,6 @@ export class BookComponent implements OnInit {
   constructor(private store: Store<BooksState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new WaitForBooks());
+    this.store.dispatch(WaitForBooks());
   }
 }

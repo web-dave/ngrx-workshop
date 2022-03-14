@@ -1,15 +1,8 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { IBook } from '../shared/book';
 
 export const LOAD_BOOKS = '[books] load books';
 export const WAIT_FOR_BOOKS = '[books] wait for books';
 
-export class LoadBooks implements Action {
-  readonly type = LOAD_BOOKS;
-  constructor(public books: IBook[]) {}
-}
-export class WaitForBooks implements Action {
-  readonly type = WAIT_FOR_BOOKS;
-}
-
-export type BookActions = LoadBooks | WaitForBooks;
+export const LoadBooks = createAction(LOAD_BOOKS, props<{ books: IBook[] }>());
+export const WaitForBooks = createAction(WAIT_FOR_BOOKS);

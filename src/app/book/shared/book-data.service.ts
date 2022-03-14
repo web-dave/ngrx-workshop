@@ -12,7 +12,7 @@ export class BookDataService {
 
   getBooksForStore() {
     this.getBooks().subscribe((books) =>
-      this.store.dispatch(new LoadBooks(books))
+      this.store.dispatch(LoadBooks({ books }))
     );
   }
 
