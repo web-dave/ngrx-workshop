@@ -1,7 +1,6 @@
 // tslint:disable:max-line-length
-// import { Action, createSelector, createFeatureSelector } from '@ngrx/store';
-import { IBook } from '../shared/book';
-import { BookActions, LoadBooks, LOAD_BOOKS } from './books.actions';
+import { BookActions, LOAD_BOOKS } from './books.actions';
+import { bookAdapter } from './books.entities';
 import { BooksState, initialState } from './books.store';
 export function booksReducer(
   state = initialState,
@@ -9,10 +8,7 @@ export function booksReducer(
 ): BooksState {
   switch (action.type) {
     case LOAD_BOOKS:
-      return {
-        ...state,
-        books: (action as LoadBooks).books,
-      };
+      return bookAdapter.setAll(action.books, state);
     default: {
       return state;
     }

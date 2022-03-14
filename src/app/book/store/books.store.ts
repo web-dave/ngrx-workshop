@@ -1,11 +1,9 @@
+import { EntityState } from '@ngrx/entity';
 import { IBook } from '../shared/book';
+import { bookAdapter } from './books.entities';
 
 export const booksStoreName = 'books';
 
-export interface BooksState {
-  books: IBook[];
-}
+export interface BooksState extends EntityState<IBook> {}
 
-export const initialState: BooksState = {
-  books: [],
-};
+export const initialState: BooksState = bookAdapter.getInitialState();
