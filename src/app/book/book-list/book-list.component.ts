@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { bookStoreName, IBookState, IState } from '../store/books.store';
+import { booksSelector } from '../store/books.selectors';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'book-list',
   templateUrl: 'book-list.component.html',
-  styleUrls: ['book-list.component.css']
+  styleUrls: ['book-list.component.css'],
 })
-export class BookListComponent implements OnInit {
-  books$: Observable<Book[]>;
+export class BookListComponent {
+  books$ = this.store.select(booksSelector).pipe(tap(console.log));
 
-  constructor(private bookData: BookDataService) {}
-
-  ngOnInit() {
-    this.books$ = this.bookData.getBooks();
-  }
+  constructor(private store: Store) {}
 }
