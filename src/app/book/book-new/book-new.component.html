@@ -1,5 +1,9 @@
 <h2>Add New Book</h2>
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<eis-my [(name)]="name1"></eis-my>
+
+{{ name1 }}
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group row">
     <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
     <input class="form-control col-sm-10" type="text" formControlName="isbn" />
@@ -50,12 +54,12 @@
       Create
     </button>
   </div>
-</form> -->
+</form>
 
 <form [formGroup]="foo">
-  <input type="tel" formControlName="age" />
-  <input type="text" formControlName="name" />
-  <span *ngIf="name.hasError('name')">{{ name.errors | json }}</span>
+  <ng-container *ngFor="let elem of getKeysOfFG(foo)">
+    <input [formControlName]="elem" />
+  </ng-container>
 </form>
 
 <pre>

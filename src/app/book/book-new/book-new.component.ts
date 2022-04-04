@@ -25,10 +25,22 @@ export class BookNewComponent implements OnInit {
   age: FormControl;
   foo: FormGroup;
 
+  name1 = 'Paul';
+
   constructor(private fb: FormBuilder, private bookService: BookDataService) {}
+
+  getKeysOfFG(fg: FormGroup): string[] {
+    return Object.keys(fg.controls);
+  }
   // 👩‍🦳👶
   ngOnInit() {
     this.foo = this.fb.group({
+      name: 'Dave',
+      age: 0,
+      icon: '',
+      files: this.fb.array([]),
+    });
+    const adr = this.fb.group({
       name: 'Dave',
       age: 0,
       icon: '',
@@ -36,6 +48,8 @@ export class BookNewComponent implements OnInit {
     this.name = this.foo.get('name') as FormControl;
     this.age = this.foo.get('age') as FormControl;
     this.foo.get('name').addValidators(Validators.required);
+    // this.foo.get('files').push()
+    this.foo.addControl('addres', adr);
     setTimeout(() => {
       this.foo.get('name').addAsyncValidators(asyncNameValidator('Dave'));
       this.foo.get('name').updateValueAndValidity();
@@ -81,6 +95,10 @@ export class BookNewComponent implements OnInit {
     this.bookService
       .createBook(book)
       .subscribe((book: Book) => console.log('Added new book', book));
+  }
+
+  hurz(e: any) {
+    console.log(e);
   }
 }
 
