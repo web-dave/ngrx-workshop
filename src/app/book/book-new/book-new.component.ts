@@ -29,15 +29,19 @@ export class BookNewComponent implements OnInit {
   // 👩‍🦳👶
   ngOnInit() {
     this.foo = this.fb.group({
-      name: '',
+      name: 'Dave',
       age: 0,
       icon: '',
     });
     this.name = this.foo.get('name') as FormControl;
     this.age = this.foo.get('age') as FormControl;
     this.foo.get('name').addValidators(Validators.required);
-    this.foo.get('name').addAsyncValidators(asyncNameValidator('Dave'));
+    setTimeout(() => {
+      this.foo.get('name').addAsyncValidators(asyncNameValidator('Dave'));
+      this.foo.get('name').updateValueAndValidity();
+    }, 3000);
     this.age.valueChanges.subscribe((data) => {
+      // this.name.setValue('Dave');
       let icon = '👩‍🦳';
       if (data <= 54) {
         icon = '👶';
