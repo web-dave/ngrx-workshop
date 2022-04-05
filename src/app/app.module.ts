@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -9,6 +9,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+
+export abstract class HOST {
+  name: string;
+}
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -23,7 +27,14 @@ import { EffectsModule } from '@ngrx/effects';
       ? []
       : StoreDevtoolsModule.instrument({ maxAge: 100 }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HOST,
+      useValue: {
+        name: 'ksjdhsdaöjfhk',
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

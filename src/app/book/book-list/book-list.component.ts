@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { bookStoreName, IBookState, IState } from '../store/books.store';
 import { booksSelector } from '../store/books.selectors';
 import { tap } from 'rxjs/operators';
+import { BookComponent } from '../book.component';
 
 @Component({
   selector: 'book-list',
@@ -15,5 +16,7 @@ import { tap } from 'rxjs/operators';
 export class BookListComponent {
   books$ = this.store.select(booksSelector).pipe(tap(console.log));
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private parent: BookComponent) {
+    console.log(parent.text);
+  }
 }

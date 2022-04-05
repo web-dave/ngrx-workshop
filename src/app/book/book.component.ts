@@ -7,6 +7,8 @@ import { BookDataService } from './shared/book-data.service';
   styleUrls: ['./book.component.css'],
 })
 export class BookComponent implements OnInit {
+  text =
+    'ökdjshväsaldfkhsädfljhasdäfljaälfjädalfgkjdäfglkjadgälkadjgfädalfgkjdäfglkjdfäglkjdfgälk';
   constructor(private service: BookDataService) {}
 
   ngOnInit() {
