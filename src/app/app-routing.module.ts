@@ -1,3 +1,8 @@
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 
@@ -20,7 +25,15 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: 'legacy',
+    }),
+  ],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
