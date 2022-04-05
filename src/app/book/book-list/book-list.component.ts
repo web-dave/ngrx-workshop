@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { Observable } from 'rxjs';
@@ -14,9 +14,19 @@ import { BookComponent } from '../book.component';
   styleUrls: ['book-list.component.css'],
 })
 export class BookListComponent {
+  @ViewChild('table') table: ElementRef<HTMLTableElement>;
   books$ = this.store.select(booksSelector).pipe(tap(console.log));
 
   constructor(private store: Store, private parent: BookComponent) {
     console.log(parent.text);
+  }
+
+  print() {
+    window.print();
+    // const tbl = this.table.nativeElement;
+    // const myPinterWindow = window.open('');
+    // myPinterWindow.document.write('<div class="content"></div>');
+    // myPinterWindow.document.querySelector('.content').appendChild(tbl);
+    // myPinterWindow.print();
   }
 }
