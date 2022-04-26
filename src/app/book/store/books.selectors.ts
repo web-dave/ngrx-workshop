@@ -10,6 +10,10 @@ const bookCollectionSelector = createSelector(
   bookFeatureSelector,
   (state) => state.bookCollection
 );
+// const bookSliceSelectors = bookEntityAdapter.getSelectors(
+//   bookCollectionSelector
+// );
+
 const { selectAll, selectEntities } = bookEntityAdapter.getSelectors(
   bookCollectionSelector
 );
