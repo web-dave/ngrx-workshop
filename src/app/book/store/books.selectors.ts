@@ -1,6 +1,5 @@
-// import { createSelector, createFeatureSelector } from '@ngrx/store';
-
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { bookEntityAdapter } from './books-collection.reducer';
 import { BookCollectionSlice, bookFeatureName } from './books-collection.slice';
 
 const bookFeatureSelector = createFeatureSelector<{
@@ -11,13 +10,10 @@ const bookCollectionSelector = createSelector(
   bookFeatureSelector,
   (state) => state.bookCollection
 );
-
-export const bookListSelector = createSelector(
-  bookCollectionSelector,
-  (state) => state.entities
+const { selectAll, selectEntities } = bookEntityAdapter.getSelectors(
+  bookCollectionSelector
 );
+export const bookListSelector = selectAll;
 
 export const bookSelector = (isbn: string) =>
-  createSelector(bookListSelector, (books) =>
-    books.find((book) => book.isbn === isbn)
-  );
+  createSelector(selectEntities, (books) => books[isbn]);
