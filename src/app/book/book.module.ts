@@ -12,6 +12,7 @@ import { bookFeatureName } from './store/books-collection.slice';
 import { bookCollectionReducer } from './store/books-collection.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookCollectionEffects } from './store/books.effects';
+import { bookReducerMap } from './store/books.store';
 
 @NgModule({
   imports: [
@@ -19,9 +20,7 @@ import { BookCollectionEffects } from './store/books.effects';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(bookFeatureName, {
-      bookCollection: bookCollectionReducer,
-    }),
+    StoreModule.forFeature(bookFeatureName, bookReducerMap),
     EffectsModule.forFeature([BookCollectionEffects]),
   ],
   declarations: [
