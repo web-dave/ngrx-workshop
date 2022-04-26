@@ -10,6 +10,8 @@ import { BookNewComponent } from './book-new/book-new.component';
 import { StoreModule } from '@ngrx/store';
 import { bookFeatureName } from './store/books-collection.slice';
 import { bookCollectionReducer } from './store/books-collection.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookCollectionEffects } from './store/books.effects';
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { bookCollectionReducer } from './store/books-collection.reducer';
     StoreModule.forFeature(bookFeatureName, {
       bookCollection: bookCollectionReducer,
     }),
+    EffectsModule.forFeature([BookCollectionEffects]),
   ],
   declarations: [
     BookComponent,

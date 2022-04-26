@@ -16,3 +16,8 @@ export const bookListSelector = createSelector(
   bookCollectionSelector,
   (state) => state.entities
 );
+
+export const bookSelector = (isbn: string) =>
+  createSelector(bookListSelector, (books) =>
+    books.find((book) => book.isbn === isbn)
+  );

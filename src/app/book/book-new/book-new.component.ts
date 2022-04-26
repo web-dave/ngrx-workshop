@@ -48,9 +48,9 @@ export class BookNewComponent implements OnInit {
         url: '',
       },
     };
+    this.store.dispatch(createBookStart({ book }));
     this.bookService.createBook(book).subscribe((book: Book) => {
       console.log('Added new book', book);
-      this.store.dispatch(createBookStart({ book }));
     });
   }
 }
