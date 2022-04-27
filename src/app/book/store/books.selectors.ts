@@ -14,10 +14,12 @@ const bookCollectionSelector = createSelector(
 //   bookCollectionSelector
 // );
 
-const { selectAll, selectEntities } = bookEntityAdapter.getSelectors(
+const { selectAll, selectEntities, selectIds } = bookEntityAdapter.getSelectors(
   bookCollectionSelector
 );
 export const bookListSelector = selectAll;
+
+export const isbnList = selectIds;
 
 export const bookSelector = (isbn: string) =>
   createSelector(selectEntities, (books) => books[isbn]);

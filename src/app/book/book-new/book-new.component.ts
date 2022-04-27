@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { Book } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { createBookStart } from '../store/books-collection.actions';
-import { noSpecialChars, uniqueIsbn } from './validators';
+import { noSpecialChars, uniqueIsbn, uniqueIsbnState } from './validators';
 
 @Component({
   selector: 'book-new',
@@ -35,7 +35,7 @@ export class BookNewComponent implements OnInit {
       isbn: [
         '',
         [Validators.required, Validators.maxLength(13)],
-        [uniqueIsbn(this.bookService)],
+        [uniqueIsbnState(this.bookService)],
       ],
       title: ['', [Validators.required, noSpecialChars]],
       author: this.fb.array([]),

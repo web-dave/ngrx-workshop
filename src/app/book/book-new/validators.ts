@@ -22,3 +22,10 @@ export const uniqueIsbn =
       switchMap(() => service.isIsbnUnique(control.value))
     );
   };
+export const uniqueIsbnState =
+  (service: BookDataService): AsyncValidatorFn =>
+  (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return timer(500).pipe(
+      switchMap(() => service.isIsbnUniqueState(control.value))
+    );
+  };
