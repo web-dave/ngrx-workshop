@@ -20,6 +20,8 @@ import { noSpecialChars, uniqueIsbn, uniqueIsbnState } from './validators';
 export class BookNewComponent implements OnInit {
   form: FormGroup;
 
+  isSaved = false;
+
   get authors(): FormArray {
     return this.form.controls['author'] as FormArray;
   }
@@ -40,6 +42,7 @@ export class BookNewComponent implements OnInit {
       title: ['', [Validators.required, noSpecialChars]],
       author: this.fb.array([]),
     });
+    this.form.valueChanges.subscribe(() => (this.isSaved = false));
   }
 
   addAuthor() {
@@ -72,6 +75,7 @@ export class BookNewComponent implements OnInit {
       },
     };
     this.bookService.createBook(book).subscribe((book: Book) => {
+      this.isSaved = true;
       this.store.dispatch(createBookStart({ book }));
       console.log('Added new book', book);
     });
