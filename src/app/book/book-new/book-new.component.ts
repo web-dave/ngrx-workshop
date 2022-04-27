@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { Book } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { createBookStart } from '../store/books-collection.actions';
-import { noSpecialChars } from './validators';
+import { noSpecialChars, uniqueIsbn } from './validators';
 
 @Component({
   selector: 'book-new',
@@ -31,19 +31,11 @@ export class BookNewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const isbn = new FormControl(
-      '',
-      [Validators.required, Validators.minLength(13), Validators.maxLength(13)],
-      []
-    );
     this.form = this.fb.group({
       isbn: [
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(13),
-          Validators.maxLength(13),
-        ]),
+        [Validators.required, Validators.maxLength(13)],
+        [uniqueIsbn(this.bookService)],
       ],
       title: ['', [Validators.required, noSpecialChars]],
       author: this.fb.array([]),
