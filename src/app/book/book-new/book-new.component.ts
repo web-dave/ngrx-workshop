@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Book } from '../shared/book';
 import { BookDataService } from '../shared/book-data.service';
 import { createBookStart } from '../store/books-collection.actions';
+import { noSpecialChars } from './validators';
 
 @Component({
   selector: 'book-new',
@@ -24,6 +31,11 @@ export class BookNewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const isbn = new FormControl(
+      '',
+      [Validators.required, Validators.minLength(13), Validators.maxLength(13)],
+      []
+    );
     this.form = this.fb.group({
       isbn: [
         '',
@@ -33,7 +45,7 @@ export class BookNewComponent implements OnInit {
           Validators.maxLength(13),
         ]),
       ],
-      title: ['', Validators.required],
+      title: ['', [Validators.required, noSpecialChars]],
       author: this.fb.array([]),
     });
   }
