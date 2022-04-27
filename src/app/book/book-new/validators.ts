@@ -3,8 +3,8 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { Observable, of, timer } from 'rxjs';
-import { debounce, debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { Observable, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { BookDataService } from '../shared/book-data.service';
 
 export const noSpecialChars = (
